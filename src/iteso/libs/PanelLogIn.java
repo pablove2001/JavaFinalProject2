@@ -118,15 +118,27 @@ public class PanelLogIn extends JFrame implements ActionListener {
 		else {
 			int validation = Users.loginValidation(jtfUserName.getText(), String.valueOf(jpfPassword.getPassword()));
 			if (validation == 0) {
-				System.out.println("contraseña correcta");
-				jlError.setVisible(false);
-			}
-			else if (validation == 1) {
 				jlError.setText("Username does not exist");
 				jlError.setVisible(true);
 			}
-			else if (validation == 2) {
+			else if (validation == 1) {
 				jlError.setText("Incorrect password");
+				jlError.setVisible(true);
+			}
+			else if (validation == 2) {
+				System.out.println("user superadmin");
+				jlError.setVisible(false);
+			}
+			else if (validation == 3) {
+				System.out.println("user admin");
+				jlError.setVisible(false);
+			}
+			else if (validation == 4) {
+				System.out.println("user employee");
+				jlError.setVisible(false);
+			}
+			else if (validation == 5) {
+				jlError.setText("Wrong user type");
 				jlError.setVisible(true);
 			}
 		}

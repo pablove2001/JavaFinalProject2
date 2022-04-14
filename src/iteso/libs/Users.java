@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Users {
+	
+	final static String USER_SUPERADMIN = "superAdmin";
+	final static String USER_ADMIN = "admin";
+	final static String USER_EMPLOYEE = "employee";
 
 	private Users() {}
 	
@@ -18,9 +22,9 @@ public class Users {
 				try {
 					FileWriter myWriter = new FileWriter("users.txt", true);
 					myWriter.write("1\n");
-					myWriter.write("superAdmin\n");
 					myWriter.write("SuperAdmin\n");
 					myWriter.write("12345678\n");
+					myWriter.write("superAdmin\n");
 					myWriter.close();
 				} catch (IOException e) {
 					System.out.println("An error occurred.");
@@ -42,24 +46,30 @@ public class Users {
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNextLine()) {
 				myReader.nextLine();
-				myReader.nextLine();
 				String data = myReader.nextLine();
 				if (data.equals(userName)) {
 					if (myReader.nextLine().equals(password)) {
-						// correct user name and password
-						return 0;
+						String typeUser = myReader.nextLine();
+						if (typeUser.equals(USER_SUPERADMIN))
+							return 2;
+						if (typeUser.equals(USER_ADMIN))
+							return 3;
+						if (typeUser.equals(USER_EMPLOYEE))
+							return 4;
+						else return 5;
 					}
 					else {
 						// incorrect password
-						return 2;
+						return 1;
 					}
 				}
+				myReader.nextLine();
 				myReader.nextLine();
 			}
 			myReader.close();
 			
 			// user name does not exist
-			return 1;
+			return 0;
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
