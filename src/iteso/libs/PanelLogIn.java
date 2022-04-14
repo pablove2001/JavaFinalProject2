@@ -107,12 +107,10 @@ public class PanelLogIn extends JFrame implements ActionListener {
 
 	}
 	
-	static public PanelLogIn getPanelLogIn() {
-		if (singleton == null) {
-            singleton = new PanelLogIn();
-        }
-        return singleton;
+	static public void createPanelLogIn() {
+        singleton = new PanelLogIn();
 	}
+	
 
 	private void logIn() {
 		if (jtfUserName.getText().length() <= 0) {
@@ -133,25 +131,9 @@ public class PanelLogIn extends JFrame implements ActionListener {
 				jlError.setText("Incorrect password");
 				jlError.setVisible(true);
 			}
-			else if (validation == 2) {
-				System.out.println("user superadmin");
-				jlError.setVisible(false);
-				PanelMenu panelMenu = PanelMenu.getPanelMenu(validation);
-				panelMenu.setVisible(true);
-				setVisible(false);
-			}
-			else if (validation == 3) {
-				System.out.println("user admin");
-				jlError.setVisible(false);
-				PanelMenu panelMenu = PanelMenu.getPanelMenu(validation);
-				panelMenu.setVisible(true);
-				setVisible(false);
-			}
-			else if (validation == 4) {
-				System.out.println("user employee");
-				jlError.setVisible(false);
-				PanelMenu panelMenu = PanelMenu.getPanelMenu(validation);
-				panelMenu.setVisible(true);
+			else if (validation == 2 || validation == 3 || validation == 4) {
+				System.out.println("User accepted");
+				PanelMenu.createPanelMenu(validation);
 				setVisible(false);
 			}
 			else if (validation == 5) {

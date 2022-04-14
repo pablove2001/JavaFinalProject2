@@ -109,19 +109,15 @@ public class PanelMenu extends JFrame implements ActionListener {
 		jpPanel.add(jlTitle);
 	}
 	
-	static public PanelMenu getPanelMenu(int accountType) {
-		if (singleton == null) {
-            singleton = new PanelMenu(accountType);
-        }
-        return singleton;
+	static public void createPanelMenu(int accountType) {
+        singleton = new PanelMenu(accountType);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jbReturn) {
 			// PanelLogIn	
-			PanelLogIn singletonLogIn = PanelLogIn.getPanelLogIn();
-			singletonLogIn.setVisible(true);
+			PanelLogIn.createPanelLogIn();
 			setVisible(false);
 		}
 		if (e.getSource() == jbSettings) {

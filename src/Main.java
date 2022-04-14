@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		PanelLogIn p1 = PanelLogIn.getPanelLogIn();
+		PanelLogIn.createPanelLogIn();
 //		PanelMenu p2 = new PanelMenu(3);
 	}
 
