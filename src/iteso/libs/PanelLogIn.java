@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 public class PanelLogIn extends JFrame implements ActionListener {
+	
+	static private PanelLogIn singleton = null;
 
 	private final int PANEL_WIDTH = 400, PANEL_HEIGHT = 300;
 
@@ -30,11 +32,10 @@ public class PanelLogIn extends JFrame implements ActionListener {
 	JTextField jtfUserName;
 	JButton jbLogIn;
 	JCheckBox jcbShowPassword;
-
 	JPasswordField jpfPassword;
-
-	public PanelLogIn() {
-
+	
+	private PanelLogIn() {
+		
 		// Create JPanel
 		jpPanel = new JPanel();
 		jpPanel.setLayout(null);
@@ -105,6 +106,13 @@ public class PanelLogIn extends JFrame implements ActionListener {
 		jpPanel.add(jcbShowPassword);
 
 	}
+	
+	static public PanelLogIn getPanelLogIn() {
+		if (singleton == null) {
+            singleton = new PanelLogIn();
+        }
+        return singleton;
+	}
 
 	private void logIn() {
 		if (jtfUserName.getText().length() <= 0) {
@@ -128,17 +136,23 @@ public class PanelLogIn extends JFrame implements ActionListener {
 			else if (validation == 2) {
 				System.out.println("user superadmin");
 				jlError.setVisible(false);
-				PanelMenu panelmenu = new PanelMenu(validation);
+				PanelMenu panelMenu = PanelMenu.getPanelMenu(validation);
+				panelMenu.setVisible(true);
+				setVisible(false);
 			}
 			else if (validation == 3) {
 				System.out.println("user admin");
 				jlError.setVisible(false);
-				PanelMenu panelmenu = new PanelMenu(validation);
+				PanelMenu panelMenu = PanelMenu.getPanelMenu(validation);
+				panelMenu.setVisible(true);
+				setVisible(false);
 			}
 			else if (validation == 4) {
 				System.out.println("user employee");
 				jlError.setVisible(false);
-				PanelMenu panelmenu = new PanelMenu(validation);
+				PanelMenu panelMenu = PanelMenu.getPanelMenu(validation);
+				panelMenu.setVisible(true);
+				setVisible(false);
 			}
 			else if (validation == 5) {
 				jlError.setText("Wrong user type");
@@ -160,5 +174,9 @@ public class PanelLogIn extends JFrame implements ActionListener {
 			jpfPassword.setEchoChar('*');
 
 	}
+	
+	protected void finalize() {
+        
+    }
 
 }

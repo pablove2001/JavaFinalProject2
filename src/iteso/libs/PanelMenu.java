@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 
 public class PanelMenu extends JFrame implements ActionListener {
+	
+	static private PanelMenu singleton = null;
 
 	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 219;
 
@@ -21,7 +23,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 	JButton jbReturn, jbSettings, jbInventoryManagement, jbInventory, jbRecord, jbStatistics, jbAccountManager;
 	JLabel jlTitle;
 
-	public PanelMenu(int accountType) {
+	private PanelMenu(int accountType) {
 		// Create JPanel
 		jpPanel = new JPanel();
 		jpPanel.setLayout(null);
@@ -106,12 +108,21 @@ public class PanelMenu extends JFrame implements ActionListener {
 		jlTitle.setFont(font2);
 		jpPanel.add(jlTitle);
 	}
+	
+	static public PanelMenu getPanelMenu(int accountType) {
+		if (singleton == null) {
+            singleton = new PanelMenu(accountType);
+        }
+        return singleton;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jbReturn) {
 			// PanelLogIn	
-			System.out.println("PanelLogIn");
+			PanelLogIn singletonLogIn = PanelLogIn.getPanelLogIn();
+			singletonLogIn.setVisible(true);
+			setVisible(false);
 		}
 		if (e.getSource() == jbSettings) {
 			// PanelSettings
