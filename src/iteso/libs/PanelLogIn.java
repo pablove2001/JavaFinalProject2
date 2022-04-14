@@ -128,14 +128,17 @@ public class PanelLogIn extends JFrame implements ActionListener {
 			else if (validation == 2) {
 				System.out.println("user superadmin");
 				jlError.setVisible(false);
+				PanelMenu panelmenu = new PanelMenu(validation);
 			}
 			else if (validation == 3) {
 				System.out.println("user admin");
 				jlError.setVisible(false);
+				PanelMenu panelmenu = new PanelMenu(validation);
 			}
 			else if (validation == 4) {
 				System.out.println("user employee");
 				jlError.setVisible(false);
+				PanelMenu panelmenu = new PanelMenu(validation);
 			}
 			else if (validation == 5) {
 				jlError.setText("Wrong user type");
