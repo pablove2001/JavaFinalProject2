@@ -17,10 +17,10 @@ public class PanelMenu extends JFrame implements ActionListener {
 	
 	static private PanelMenu singleton = null;
 
-	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 219;
+	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 249;
 
 	JPanel jpPanel;
-	JButton jbReturn, jbSettings, jbInventoryManagement, jbInventory, jbRecord, jbStatistics, jbAccountManager;
+	JButton jbReturn, jbSettings, jbInputsInventory, jbOutputsInventory, jbInventory, jbRecord, jbStatistics, jbAccountManager;
 	JLabel jlTitle;
 
 	private PanelMenu(int accountType) {
@@ -30,7 +30,6 @@ public class PanelMenu extends JFrame implements ActionListener {
 		add(jpPanel);
 		setTitle("PanelMenu");
 		setSize(PANEL_WIDTH, PANEL_HEIGHT);
-		setLocation(250, 250);
 		setVisible(true);		
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -56,27 +55,33 @@ public class PanelMenu extends JFrame implements ActionListener {
 		jbSettings.addActionListener(this);
 		jpPanel.add(jbSettings);
 		
-		jbInventoryManagement = new JButton("Inventory Management");
-		jbInventoryManagement.setFont(font3);
-		jbInventoryManagement.setBounds(0, 60, PANEL_WIDTH-16, 30);
-		jbInventoryManagement.addActionListener(this);
-		jpPanel.add(jbInventoryManagement);
+		jbInputsInventory = new JButton("Inputs Inventory");
+		jbInputsInventory.setFont(font3);
+		jbInputsInventory.setBounds(0, 60, PANEL_WIDTH-16, 30);
+		jbInputsInventory.addActionListener(this);
+		jpPanel.add(jbInputsInventory);
+		
+		jbOutputsInventory = new JButton("Outputs Inventory");
+		jbOutputsInventory.setFont(font3);
+		jbOutputsInventory.setBounds(0, 90, PANEL_WIDTH-16, 30);
+		jbOutputsInventory.addActionListener(this);
+		jpPanel.add(jbOutputsInventory);
 		
 		jbInventory = new JButton("Inventory");
 		jbInventory.setFont(font3);
-		jbInventory.setBounds(0, 90, PANEL_WIDTH-16, 30);
+		jbInventory.setBounds(0, 120, PANEL_WIDTH-16, 30);
 		jbInventory.addActionListener(this);
 		jpPanel.add(jbInventory);
 		
 		jbRecord = new JButton("Record");
 		jbRecord.setFont(font3);
-		jbRecord.setBounds(0, 120, PANEL_WIDTH-16, 30);
+		jbRecord.setBounds(0, 150, PANEL_WIDTH-16, 30);
 		jbRecord.addActionListener(this);
 		jpPanel.add(jbRecord);
 		
 		jbStatistics = new JButton("Statistics");
 		jbStatistics.setFont(font3);
-		jbStatistics.setBounds(0, 150, PANEL_WIDTH-16, 30);
+		jbStatistics.setBounds(0, 180, PANEL_WIDTH-16, 30);
 		jbStatistics.addActionListener(this);
 		jpPanel.add(jbStatistics);
 		
@@ -84,7 +89,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 		if (accountType != 4) {
 			jbAccountManager = new JButton("Accounts Manager");
 			jbAccountManager.setFont(font3);
-			jbAccountManager.setBounds(0, 180, PANEL_WIDTH-16, 30);
+			jbAccountManager.setBounds(0, 210, PANEL_WIDTH-16, 30);
 			jbAccountManager.addActionListener(this);
 			jpPanel.add(jbAccountManager);
 			setSize(PANEL_WIDTH, PANEL_HEIGHT+30);			
@@ -124,9 +129,13 @@ public class PanelMenu extends JFrame implements ActionListener {
 			// PanelSettings
 			System.out.println("PanelSettings");
 		}
-		if (e.getSource() == jbInventoryManagement) {
+		if (e.getSource() == jbInputsInventory) {
 			// PanelInventoryManagement
-			System.out.println("PanelInventoryManagement");
+			System.out.println("PanelInputsInventory");
+		}
+		if (e.getSource() == jbOutputsInventory) {
+			// PanelInventoryManagement
+			System.out.println("PanelOutputsInventory");
 		}
 		if (e.getSource() == jbInventory) {
 			// PanelInventory

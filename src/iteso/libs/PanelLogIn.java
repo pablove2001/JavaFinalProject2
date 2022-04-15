@@ -35,7 +35,6 @@ public class PanelLogIn extends JFrame implements ActionListener {
 		add(jpPanel);
 		setTitle("PanelLogIn");
 		setSize(PANEL_WIDTH, PANEL_HEIGHT);
-		setLocation(250, 250);
 		setVisible(true);		
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -127,7 +126,7 @@ public class PanelLogIn extends JFrame implements ActionListener {
 			else if (validation == 2 || validation == 3 || validation == 4) {
 				System.out.println("User accepted");
 				PanelMenu.createPanelMenu(validation);
-				setVisible(false);
+				//setVisible(false);
 			}
 			else if (validation == 5) {
 				jlError.setText("Wrong user type");
