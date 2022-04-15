@@ -1,5 +1,4 @@
 package iteso.libs;
-import iteso.libs.Users;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,12 +6,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
