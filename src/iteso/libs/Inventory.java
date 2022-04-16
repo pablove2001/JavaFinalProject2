@@ -57,7 +57,7 @@ public class Inventory {
 
 		Inventory.overwriteInventoryTxt(inventory);
 	}
-	
+
 	public static void outsInventory(String[][] input) {
 		String[][] inventory = inventoryInformation(0, "");
 
@@ -83,6 +83,21 @@ public class Inventory {
 		overwriteInventoryTxt(inventory);
 	}
 
+	public static void editProduct(String[] toEdit) {
+		String[][] inventory = inventoryInformation(0, "");
+
+		for(int i = 0; i< inventory.length; i++) {
+			if(toEdit[1].equals(inventory[i][1])) {
+				inventory[i][3] = toEdit[3];
+				inventory[i][4] = toEdit[4];
+				break;
+			}
+
+		}
+
+		overwriteInventoryTxt(inventory);
+	}
+
 	public static void overwriteInventoryTxt(String[][] inventory) {
 		try {
 			FileWriter myWriter = new FileWriter("inventory.txt");
@@ -100,11 +115,6 @@ public class Inventory {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-
-		String[][] inventory2 = inventoryInformation(0, "");
-
-		printArray2D(inventory2);
-
 	}
 
 	public static String[][] inventoryInformation(int order, String toFind) {
