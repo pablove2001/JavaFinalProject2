@@ -1,15 +1,15 @@
 1
 nombre1
-cantidad1
+10
 precio1
 porcentaje ganancia1
 2
 nombre2
-cantidad2
+20
 precio2
 porcentaje ganancia2
 3
 nombre3
-cantidad3
+30
 precio3
 porcentaje ganancia3

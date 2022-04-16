@@ -37,6 +37,28 @@ public class Inventory {
 
 		return newArray;
 	}
+	
+	public static void inputsInventory(String[][] input) {
+		String[][] inventory = inventoryInformation(0, "");
+		boolean found;
+		
+		for(int i = 0; i< input.length; i++) {
+			found = false;
+			for(int j = 0; j< inventory.length; j++) {
+				if(input[i][1].equals(inventory[j][1])) {
+					found = true;
+					int cantidad = Integer.parseInt(input[i][2])+Integer.parseInt(inventory[j][2]);
+					inventory[j][2] = ""+cantidad;
+					System.out.println(input[i][1] + " cantidad: " + inventory[j][2]);
+					break;
+				}
+			}
+			if(!found) {
+				System.out.println(input[i][1] + " añadido");
+			}
+			
+		}
+	}
 
 	public static String[][] inventoryInformation(int order, String toFind) {
 		String[][] information = {};

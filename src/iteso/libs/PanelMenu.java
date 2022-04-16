@@ -142,6 +142,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == jbInventory) {
 			// PanelInventory
+			// Historial de cuantas, historial de modificaciones de inventario, modificaciones de precios y porcentaje, etc.
 			System.out.println("PanelInventory");
 		}
 		if (e.getSource() == jbRecord) {
