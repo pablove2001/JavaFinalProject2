@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Inventory {
 
@@ -25,39 +23,88 @@ public class Inventory {
 			e.printStackTrace();
 		}
 	}
-	
-	public static String[][] addElementArray(String[][] array, String[] toAdd){
-		
+
+	public static String[][] appendArray2D(String[][] array, String[] toAdd){
 		String[][] newArray = new String[array.length+1][];
 		for(int i = 0; i< array.length; i++) {
 			newArray[i] = array[i];
-		}
-		
-		newArray[array.length] = toAdd;
-
+		}		
+		newArray[array.length] = toAdd.clone();
 		return newArray;
 	}
-	
+
+	public static void printArray2D(String[][] array) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
+				System.out.print(array[i][j] + ", ");
+			}
+			System.out.println();
+		}
+	}
+
 	public static void inputsInventory(String[][] input) {
 		String[][] inventory = inventoryInformation(0, "");
-		boolean found;
-		
+
 		for(int i = 0; i< input.length; i++) {
-			found = false;
 			for(int j = 0; j< inventory.length; j++) {
 				if(input[i][1].equals(inventory[j][1])) {
-					found = true;
-					int cantidad = Integer.parseInt(input[i][2])+Integer.parseInt(inventory[j][2]);
-					inventory[j][2] = ""+cantidad;
-					System.out.println(input[i][1] + " cantidad: " + inventory[j][2]);
+					int amount = Integer.parseInt(inventory[j][2])+Integer.parseInt(input[i][2]);
+					inventory[j][2] = ""+amount;
 					break;
 				}
 			}
-			if(!found) {
-				System.out.println(input[i][1] + " añadido");
-			}
-			
 		}
+
+		Inventory.overwriteInventoryTxt(inventory);
+	}
+	
+	public static void outsInventory(String[][] input) {
+		String[][] inventory = inventoryInformation(0, "");
+
+		for(int i = 0; i< input.length; i++) {
+			for(int j = 0; j< inventory.length; j++) {
+				if(input[i][1].equals(inventory[j][1])) {
+					int amount = Integer.parseInt(inventory[j][2])-Integer.parseInt(input[i][2]);
+					if (amount <= 0) amount = 0;
+					inventory[j][2] = ""+amount;
+					break;
+				}
+			}
+		}
+
+		Inventory.overwriteInventoryTxt(inventory);
+	}
+
+	public static void addProduct(String[] toAdd) {
+		String[][] inventory = inventoryInformation(0, "");
+		toAdd[0] = ""+(inventory.length+1);
+		inventory = appendArray2D(inventory, toAdd);
+
+		overwriteInventoryTxt(inventory);
+	}
+
+	public static void overwriteInventoryTxt(String[][] inventory) {
+		try {
+			FileWriter myWriter = new FileWriter("inventory.txt");
+			for (int i = 0; i < inventory.length; i++) {
+				for (int j = 0; j < inventory[i].length; j++) {
+					myWriter.write(inventory[i][j]);
+					if (!((i == inventory.length-1) && (j == inventory[i].length-1))) {
+						myWriter.write("\n");
+					}
+				}
+			}
+
+			myWriter.close();
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+
+		String[][] inventory2 = inventoryInformation(0, "");
+
+		printArray2D(inventory2);
+
 	}
 
 	public static String[][] inventoryInformation(int order, String toFind) {
@@ -98,8 +145,7 @@ public class Inventory {
 				presta = myReader.nextLine();
 				toAdd[lineCounter%5] = presta;
 				if (lineCounter%5 == 4) {						
-					information = Inventory.addElementArray(information, toAdd);
-					toAdd = new String[5];
+					information = Inventory.appendArray2D(information, toAdd);
 				}
 				lineCounter++;
 			}

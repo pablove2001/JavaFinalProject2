@@ -6,9 +6,16 @@ public class Main {
 
 //				PanelLogIn.createPanelLogIn();
 //				PanelMenu.createPanelMenu(4);
-
 		
-//		String[][] information = Inventory.inventoryInformation(0, "");
+		
+		String[][] information = {{"", "nombre4", "1", "precio4", "porcentaje ganancia4"}, {"", "nombre1", "1", "precio1", "porcentaje ganancia1"}, {"", "nombre2", "3", "precio2", "porcentaje ganancia2"}};
+		Inventory.outsInventory(information);
+		
+//		String[] toadd= {"", "nombre5", "50", "precio5", "porcentaje ganancia5"};
+//		Inventory.addProduct(toadd);
+		
+		
+//		information = Inventory.inventoryInformation(0, "");
 //		
 //		for (int i = 0; i < information.length; i++) {
 //			for (int j = 0; j < information[i].length; j++) {
@@ -16,21 +23,6 @@ public class Main {
 //			}
 //			System.out.println();
 //		}
-		
-		
-		String[][] information = {{"4", "nombre1", "4", "precio4", "porcentaje ganacia4"}, {"2", "nombre2", "3", "precio2", "porcentaje ganacia2"}, {"2", "nombre4", "3", "precio2", "porcentaje ganacia2"}};
-		Inventory.inputsInventory(information);
-		
-		
-//		information = Inventory.inventoryInformation(0, "");
-//		for (int i = 0; i < information.length; i++) {
-//			for (int j = 0; j < information[i].length; j++) {
-//				System.out.print(information[i][j] + ", ");
-//			}
-//			System.out.println();
-//		}
-
-
 	}
 
 }
