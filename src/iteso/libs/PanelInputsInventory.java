@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class PanelInputsInventory extends JFrame implements ActionListener {
+	
 	static private PanelInputsInventory singleton = null;
 
 	private final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600;
@@ -20,7 +21,7 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 		jpPanel = new JPanel();
 		jpPanel.setLayout(null);
 		add(jpPanel);
-		setTitle("PanelInventoryManagement");
+		setTitle("PanelInventory");
 		setSize(PANEL_WIDTH, PANEL_HEIGHT);
 		setVisible(true);		
 		setResizable(false);

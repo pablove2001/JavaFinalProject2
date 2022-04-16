@@ -30,6 +30,7 @@ public class PanelMenu extends JFrame implements ActionListener {
 		add(jpPanel);
 		setTitle("PanelMenu");
 		setSize(PANEL_WIDTH, PANEL_HEIGHT);
+		setLocation(250, 250);
 		setVisible(true);		
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -123,19 +124,21 @@ public class PanelMenu extends JFrame implements ActionListener {
 		if (e.getSource() == jbReturn) {
 			// PanelLogIn	
 			PanelLogIn.createPanelLogIn();
-			setVisible(false);
+			dispose();
 		}
 		if (e.getSource() == jbSettings) {
 			// PanelSettings
 			System.out.println("PanelSettings");
+			//System.exit(0);
 		}
 		if (e.getSource() == jbInputsInventory) {
 			// PanelInventoryManagement
 			System.out.println("PanelInputsInventory");
+			
 		}
 		if (e.getSource() == jbOutputsInventory) {
 			// PanelInventoryManagement
-			System.out.println("PanelOutputsInventory");
+			System.out.println("PanelOputsInventory");
 		}
 		if (e.getSource() == jbInventory) {
 			// PanelInventory

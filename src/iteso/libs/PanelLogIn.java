@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -15,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 public class PanelLogIn extends JFrame implements ActionListener {
-	
+
 	static private PanelLogIn singleton = null;
 
 	private final int PANEL_WIDTH = 400, PANEL_HEIGHT = 300;
@@ -26,9 +29,9 @@ public class PanelLogIn extends JFrame implements ActionListener {
 	JButton jbLogIn;
 	JCheckBox jcbShowPassword;
 	JPasswordField jpfPassword;
-	
+
 	private PanelLogIn() {
-		
+
 		// Create JPanel
 		jpPanel = new JPanel();
 		jpPanel.setLayout(null);
@@ -98,11 +101,10 @@ public class PanelLogIn extends JFrame implements ActionListener {
 		jpPanel.add(jcbShowPassword);
 
 	}
-	
+
 	static public void createPanelLogIn() {
-        singleton = new PanelLogIn();
+		singleton = new PanelLogIn();
 	}
-	
 
 	private void logIn() {
 		if (jtfUserName.getText().length() <= 0) {
@@ -124,9 +126,8 @@ public class PanelLogIn extends JFrame implements ActionListener {
 				jlError.setVisible(true);
 			}
 			else if (validation == 2 || validation == 3 || validation == 4) {
-				System.out.println("User accepted");
 				PanelMenu.createPanelMenu(validation);
-				//setVisible(false);
+				dispose();
 			}
 			else if (validation == 5) {
 				jlError.setText("Wrong user type");
@@ -148,9 +149,5 @@ public class PanelLogIn extends JFrame implements ActionListener {
 			jpfPassword.setEchoChar('*');
 
 	}
-	
-	protected void finalize() {
-        
-    }
 
 }
