@@ -15,8 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class FrameInventory extends JFrame implements ActionListener {
 
-	static private FrameInventory singleton = null;
-
 	private final int PANEL_WIDTH = 500, PANEL_HEIGHT = 475;
 
 	JPanel jpPanel;
@@ -25,7 +23,7 @@ public class FrameInventory extends JFrame implements ActionListener {
 	JScrollPane jspScrollPane;
 	JButton jbReturn;
 
-	private FrameInventory(int order, String toFind) {
+	public FrameInventory(int order, String toFind) {
 		// Create JPanel
 		jpPanel = new JPanel();
 		// Create JFrame
@@ -53,26 +51,9 @@ public class FrameInventory extends JFrame implements ActionListener {
 		jfFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
 		jfFrame.setResizable(false);
 		jfFrame.setVisible(true);
-		jfFrame.setTitle("PanelInventory");
+		jfFrame.setTitle("FrameInventory");
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		jfFrame.setLocation(dim.width/2-jfFrame.getSize().width/2, dim.height/2-jfFrame.getSize().height/2);
-
-	}
-
-	static public FrameInventory createFrameInventory(int order, String toFind) {
-		if (singleton == null) singleton = new FrameInventory(order, toFind);
-		return singleton;
-	}
-	
-	public void closeFrame() {
-		jfFrame.dispose();
-		singleton = null;
-	}
-	
-	public FrameInventory reload(int order, String toFind) {
-		jfFrame.dispose();
-		singleton = null;
-		return createFrameInventory(order, toFind);
 	}
 
 	@Override
