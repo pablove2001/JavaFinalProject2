@@ -74,8 +74,16 @@ public class Inventory {
 
 		Inventory.overwriteInventoryTxt(inventory);
 	}
+	
+	public static boolean productExists(String name) {
+		String[][] inventory = inventoryInformation(0, "");
+		for (int i = 0; i<inventory.length; i++) {
+			if (inventory[i][1].equals(name)) return true;
+		}	
+		return false;
+	}
 
-	public static void addProduct(String[] toAdd) {
+	public static void addNewProduct(String[] toAdd) {
 		String[][] inventory = inventoryInformation(0, "");
 		toAdd[0] = ""+(inventory.length+1);
 		inventory = appendArray2D(inventory, toAdd);
@@ -87,7 +95,8 @@ public class Inventory {
 		String[][] inventory = inventoryInformation(0, "");
 
 		for(int i = 0; i< inventory.length; i++) {
-			if(toEdit[1].equals(inventory[i][1])) {
+			if(toEdit[0].equals(inventory[i][1])) {
+				inventory[i][1] = toEdit[1];
 				inventory[i][3] = toEdit[3];
 				inventory[i][4] = toEdit[4];
 				break;

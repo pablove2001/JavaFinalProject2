@@ -14,10 +14,10 @@ nombre3
 precio3
 porcentaje ganancia3
 4
-nombre4
+nombre
 0
-precio4
-porcentaje ganancia4
+23
+23
 5
 nombre5
 50
@@ -194,7 +194,22 @@ nombre4
 precio4
 porcentaje ganancia4
 5
-nombre5
+nombrexd
 50
 precio5
 porcentaje ganancia5
+41
+nombre6
+0
+12.40
+15
+42
+la coca de piña 500 ml
+13
+100
+200
+43
+nombre4
+0
+12
+2

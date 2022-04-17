@@ -7,9 +7,11 @@ public class Main {
 //		PanelLogIn.createPanelLogIn();
 //		PanelMenu.createPanelMenu(3);
 //		PanelInventory.createPanelInventory(2);
-		PanelAddNewProduct.createPanelAddNewProduct(1);
+//		PanelAddNewProduct.createPanelAddNewProduct(1);
+		PanelEditProduct.createPanelEditProduct(3);
 		
 //		System.out.println(Users.idToTypeUser(3));
+
 		
 		
 
