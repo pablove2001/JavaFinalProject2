@@ -50,18 +50,11 @@ public class Users {
 				String data = myReader.nextLine();
 				if (data.equals(userName)) {
 					if (myReader.nextLine().equals(password)) {
-						String typeUser = myReader.nextLine();
-						if (typeUser.equals(USER_SUPERADMIN))
-							return 2;
-						if (typeUser.equals(USER_ADMIN))
-							return 3;
-						if (typeUser.equals(USER_EMPLOYEE))
-							return 4;
-						else return 5;
+						return idUser;
 					}
 					else {
 						// incorrect password
-						return 1;
+						return -2;
 					}
 				}
 				myReader.nextLine();
@@ -70,13 +63,55 @@ public class Users {
 			myReader.close();
 
 			// user name does not exist
-			return 0;
+			return -1;
 
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-		return 1;
+		return -1;
+	}
+
+	public static int idToTypeUser(int idUser) {
+		String[][] users = usersInformation();
+		if (idUser > users.length || idUser < 1) return -1;
+		
+		return TypeUserInt(users[idUser-1][3]);
+	}
+	
+	public static int TypeUserInt(String typeUser) {
+		if(typeUser.equals(USER_SUPERADMIN)) return 0;
+		if(typeUser.equals(USER_ADMIN)) return 1;
+		return 2;
+	}
+	
+	public static String[][] usersInformation() {
+		String[][] information = {};
+
+		createTxtFile();
+
+		int lineCounter = 0;
+		String[] toAdd = new String[4];
+		String presta;
+		try {
+			File myObj = new File("users.txt");
+			Scanner myReader = new Scanner(myObj);
+			while (myReader.hasNextLine()) {
+				presta = myReader.nextLine();
+				toAdd[lineCounter%4] = presta;
+				if (lineCounter%4 == 3) {						
+					information = Inventory.appendArray2D(information, toAdd);
+				}
+				lineCounter++;
+			}
+			myReader.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}		
+
+		return information;	
 	}
 
 }

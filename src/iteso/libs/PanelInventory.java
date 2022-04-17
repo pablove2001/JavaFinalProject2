@@ -24,7 +24,7 @@ public class PanelInventory extends JFrame implements ActionListener {
 	static private PanelInventory singleton = null;
 
 	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 345;
-	int accountType;
+	int idUser;
 
 	JPanel jpPanel;
 	JLabel jlOrderBy, jlFindWord, jlToFind;
@@ -36,8 +36,8 @@ public class PanelInventory extends JFrame implements ActionListener {
 
 	FrameInventory inventory = new FrameInventory(0, "");
 
-	private PanelInventory(int accountType) {
-		this.accountType = accountType;
+	private PanelInventory(int idUser) {
+		this.idUser = idUser;
 		inventory.jfFrame.setVisible(false);
 
 		// Create JPanel
@@ -72,7 +72,7 @@ public class PanelInventory extends JFrame implements ActionListener {
 		
 		jlToFind = new JLabel("Name:");
 		jlToFind.setFont(font5);
-		jlToFind.setBounds(30, 195, 300, 23);
+		jlToFind.setBounds(25, 195, 300, 23);
 		jpPanel.add(jlToFind);
 
 		// Create JButton
@@ -129,9 +129,10 @@ public class PanelInventory extends JFrame implements ActionListener {
 		BGbuttonsAscDesc.add(jrbDescending);
 		jpPanel.add(jrbDescending);
 		
+		// JTextField
 		jtfFindWord = new JTextField();
 		jtfFindWord.setFont(font5);
-		jtfFindWord.setBounds(83, 195, 175, 23);
+		jtfFindWord.setBounds(78, 195, 180, 23);
 		jpPanel.add(jtfFindWord);
 	}
 
@@ -143,7 +144,7 @@ public class PanelInventory extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jbReturn) {
 			// PanelMenu	
-			PanelMenu.createPanelMenu(accountType);
+			PanelMenu.createPanelMenu(idUser);
 			inventory.jfFrame.dispose();
 			dispose();
 		}

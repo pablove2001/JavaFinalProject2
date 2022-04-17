@@ -1,12 +1,17 @@
 import iteso.libs.*;
 
 public class Main {
-// 2 3 4
+// 0 1 2
 	public static void main(String[] args) {
 
 //		PanelLogIn.createPanelLogIn();
-		PanelMenu.createPanelMenu(4);
+//		PanelMenu.createPanelMenu(3);
 //		PanelInventory.createPanelInventory(2);
+		PanelAddNewProduct.createPanelAddNewProduct(1);
+		
+//		System.out.println(Users.idToTypeUser(3));
+		
+		
 
 		
 	}

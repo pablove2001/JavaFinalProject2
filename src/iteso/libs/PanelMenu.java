@@ -17,15 +17,15 @@ public class PanelMenu extends JFrame implements ActionListener {
 	
 	static private PanelMenu singleton = null;
 
-	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 249;
-	int accountType;
+	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 279;
+	int idUser;
 
 	JPanel jpPanel;
-	JButton jbReturn, jbSettings, jbInputsInventory, jbOutputsInventory, jbInventory, jbRecord, jbStatistics, jbAccountManager;
+	JButton jbReturn, jbSettings, jbInputsInventory, jbOutputsInventory, jbAddNewProduct, jbInventory, jbRecord, jbStatistics, jbAccountManager;
 	JLabel jlTitle;
 
-	private PanelMenu(int accountType) {
-		this.accountType = accountType;
+	private PanelMenu(int idUser) {
+		this.idUser = idUser;
 		
 		// Create JPanel
 		jpPanel = new JPanel();
@@ -71,45 +71,51 @@ public class PanelMenu extends JFrame implements ActionListener {
 		jbOutputsInventory.addActionListener(this);
 		jpPanel.add(jbOutputsInventory);
 		
+		jbAddNewProduct = new JButton("Add a New Product");
+		jbAddNewProduct.setFont(font3);
+		jbAddNewProduct.setBounds(0, 120, PANEL_WIDTH-16, 30);
+		jbAddNewProduct.addActionListener(this);
+		jpPanel.add(jbAddNewProduct);
+		
 		jbInventory = new JButton("Inventory");
 		jbInventory.setFont(font3);
-		jbInventory.setBounds(0, 120, PANEL_WIDTH-16, 30);
+		jbInventory.setBounds(0, 150, PANEL_WIDTH-16, 30);
 		jbInventory.addActionListener(this);
 		jpPanel.add(jbInventory);
 		
 		jbRecord = new JButton("Record");
 		jbRecord.setFont(font3);
-		jbRecord.setBounds(0, 150, PANEL_WIDTH-16, 30);
+		jbRecord.setBounds(0, 180, PANEL_WIDTH-16, 30);
 		jbRecord.addActionListener(this);
 		jpPanel.add(jbRecord);
 		
 		jbStatistics = new JButton("Statistics");
 		jbStatistics.setFont(font3);
-		jbStatistics.setBounds(0, 180, PANEL_WIDTH-16, 30);
+		jbStatistics.setBounds(0, 210, PANEL_WIDTH-16, 30);
 		jbStatistics.addActionListener(this);
 		jpPanel.add(jbStatistics);
 		
 		//jbAccountManager
-		if (accountType != 4) {
+		if (Users.idToTypeUser(idUser) != 2) {
 			jbAccountManager = new JButton("Accounts Manager");
 			jbAccountManager.setFont(font3);
-			jbAccountManager.setBounds(0, 210, PANEL_WIDTH-16, 30);
+			jbAccountManager.setBounds(0, 240, PANEL_WIDTH-16, 30);
 			jbAccountManager.addActionListener(this);
 			jpPanel.add(jbAccountManager);
 			setSize(PANEL_WIDTH, PANEL_HEIGHT+30);			
 		}
 
 		// Create JLabel
-		switch (accountType) {
-		case 2: 
+		switch (Users.idToTypeUser(idUser)) {
+		case 0: 
 			jlTitle = new JLabel("SuperAdmin menu"); 
 			jlTitle.setBounds(56, 20, 200, 45); 
 			break;
-		case 3: 
+		case 1: 
 			jlTitle = new JLabel("Admin menu");
 			jlTitle.setBounds(85, 20, 200, 45); 
 			break;
-		case 4: 
+		case 2: 
 			jlTitle = new JLabel("Employee menu"); 
 			jlTitle.setBounds(70, 20, 200, 45); 
 			break;
@@ -143,9 +149,14 @@ public class PanelMenu extends JFrame implements ActionListener {
 			// PanelInventoryManagement
 			System.out.println("PanelOputsInventory");
 		}
+		if (e.getSource() == jbAddNewProduct) {
+			// PanelAddNewProduct
+			PanelAddNewProduct.createPanelAddNewProduct(idUser);
+			dispose();
+		}
 		if (e.getSource() == jbInventory) {
 			// PanelInventory
-			PanelInventory.createPanelInventory(accountType);
+			PanelInventory.createPanelInventory(idUser);
 			dispose();
 		}
 		if (e.getSource() == jbRecord) {
