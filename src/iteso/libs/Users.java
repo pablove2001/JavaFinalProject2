@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Users {
-	
+
 	final static String USER_SUPERADMIN = "superAdmin";
 	final static String USER_ADMIN = "admin";
 	final static String USER_EMPLOYEE = "employee";
 
 	private Users() {}
-	
+
 	private static void createTxtFile() {
 		try {
 			File myObj = new File("users.txt");
@@ -36,16 +36,17 @@ public class Users {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static int loginValidation(String userName, String password) {
 		createTxtFile();
-		
+		int idUser;
+
 		// find user name and password
 		try {
 			File myObj = new File("users.txt");
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNextLine()) {
-				myReader.nextLine();
+				idUser = Integer.parseInt(myReader.nextLine());
 				String data = myReader.nextLine();
 				if (data.equals(userName)) {
 					if (myReader.nextLine().equals(password)) {
@@ -67,10 +68,10 @@ public class Users {
 				myReader.nextLine();
 			}
 			myReader.close();
-			
+
 			// user name does not exist
 			return 0;
-			
+
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();

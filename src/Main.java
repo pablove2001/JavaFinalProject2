@@ -5,8 +5,8 @@ public class Main {
 	public static void main(String[] args) {
 
 //		PanelLogIn.createPanelLogIn();
-//		PanelMenu.createPanelMenu(4);
-		PanelInventory.createPanelInventory(2);
+		PanelMenu.createPanelMenu(4);
+//		PanelInventory.createPanelInventory(2);
 
 		
 	}
