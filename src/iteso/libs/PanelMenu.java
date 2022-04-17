@@ -18,12 +18,15 @@ public class PanelMenu extends JFrame implements ActionListener {
 	static private PanelMenu singleton = null;
 
 	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 249;
+	int accountType;
 
 	JPanel jpPanel;
 	JButton jbReturn, jbSettings, jbInputsInventory, jbOutputsInventory, jbInventory, jbRecord, jbStatistics, jbAccountManager;
 	JLabel jlTitle;
 
 	private PanelMenu(int accountType) {
+		this.accountType = accountType;
+		
 		// Create JPanel
 		jpPanel = new JPanel();
 		jpPanel.setLayout(null);
@@ -142,11 +145,12 @@ public class PanelMenu extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == jbInventory) {
 			// PanelInventory
-			// Historial de cuantas, historial de modificaciones de inventario, modificaciones de precios y porcentaje, etc.
-			System.out.println("PanelInventory");
+			PanelInventory.createPanelInventory(accountType);
+			dispose();
 		}
 		if (e.getSource() == jbRecord) {
 			// PanelRecord
+			// Historial de cuantas, historial de modificaciones de inventario, modificaciones de precios y porcentaje, etc.
 			System.out.println("PanelRecord");
 		}
 		if (e.getSource() == jbStatistics) {
