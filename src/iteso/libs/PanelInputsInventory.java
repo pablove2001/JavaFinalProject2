@@ -31,14 +31,14 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 		setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
 		// Create JFrame
-		String[][] information = Inventory.inventoryInformation(0, "");
-		jfFrame = new JFrame();
-		String[] header = { "ID", "Name", "Count No.", "Unit Price", "Profit %" };
-		jtTable = new JTable(information, header);
-		jpPanel.add(new JScrollPane(jtTable));
-		jfFrame.add(jpPanel);
-		jfFrame.setSize(0, 0);
-		jfFrame.setVisible(true);
+//		String[][] information = Inventory.inventoryInformation();
+//		jfFrame = new JFrame();
+//		String[] header = { "ID", "Name", "Count No.", "Unit Price", "Profit %" };
+//		jtTable = new JTable(information, header);
+//		jpPanel.add(new JScrollPane(jtTable));
+//		jfFrame.add(jpPanel);
+//		jfFrame.setSize(0, 0);
+//		jfFrame.setVisible(true);
 
 	}
 

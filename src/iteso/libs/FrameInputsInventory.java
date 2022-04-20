@@ -29,13 +29,13 @@ public class FrameInputsInventory extends JFrame implements ActionListener {
 		// Create JFrame
 		jfFrame = new JFrame();
 		// Create JTable
-		String[][] information = Inventory.inventoryInformation(order, toFind);
+//		String[][] information = Inventory.inventoryInformation();
 		String[] header = { "ID", "Name", "Count No.", "Unit Price", "Profit %" };
-		jtTable = new JTable(information, header){
-			public boolean isCellEditable(int row, int column) { 
-				return false;             
-			}
-		};
+//		jtTable = new JTable(information, header){
+//			public boolean isCellEditable(int row, int column) { 
+//				return false;             
+//			}
+//		};
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
 		for (int i = 0; i<5; i++) jtTable.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );

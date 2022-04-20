@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 
 public class PanelMenu extends JFrame implements ActionListener {
 
-	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 279;
+	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 249;
 	int idUser;
 
 	JPanel jpPanel;
-	JButton jbReturn, jbSettings, jbInputsInventory, jbOutputsInventory, jbProducts, jbInventory, jbRecord, jbStatistics, jbAccountManager;
+	JButton jbReturn, jbSettings, jbInputsInventory, jbOutputsInventory, jbProducts, jbInventory, jbRecord, jbAccountManager;
 	JLabel jlTitle;
 
 	private PanelMenu(int idUser) {
@@ -87,17 +87,11 @@ public class PanelMenu extends JFrame implements ActionListener {
 		jbRecord.addActionListener(this);
 		jpPanel.add(jbRecord);
 
-		jbStatistics = new JButton("Statistics");
-		jbStatistics.setFont(font3);
-		jbStatistics.setBounds(0, 210, PANEL_WIDTH-16, 30);
-		jbStatistics.addActionListener(this);
-		jpPanel.add(jbStatistics);
-
 		//jbAccountManager
 		if (Users.idToTypeUser(idUser) != 2) {
 			jbAccountManager = new JButton("Accounts Manager");
 			jbAccountManager.setFont(font3);
-			jbAccountManager.setBounds(0, 240, PANEL_WIDTH-16, 30);
+			jbAccountManager.setBounds(0, 210, PANEL_WIDTH-16, 30);
 			jbAccountManager.addActionListener(this);
 			jpPanel.add(jbAccountManager);
 			setSize(PANEL_WIDTH, PANEL_HEIGHT+30);			
@@ -161,10 +155,6 @@ public class PanelMenu extends JFrame implements ActionListener {
 			// PanelRecord
 			// Historial de cuantas, historial de modificaciones de inventario, modificaciones de precios y porcentaje, etc.
 			System.out.println("PanelRecord");
-		}
-		if (e.getSource() == jbStatistics) {
-			// PanelStatistics
-			System.out.println("PanelStatistics");
 		}
 		if (e.getSource() == jbAccountManager) {
 			// PanelAccountManager

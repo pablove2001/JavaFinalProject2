@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Inventory {
 
@@ -41,10 +43,23 @@ public class Inventory {
 			System.out.println();
 		}
 	}
-	
+
+	public static int compareStrings(String word1, String word2)
+	{
+		for(int i = 0; i < Math.min(word1.length(), word2.length()); i++)
+		{
+			if((int)word1.charAt(i) != (int)word2.charAt(i))//comparing unicode values
+				return (int)word1.charAt(i) - (int)word2.charAt(i);
+		}
+		if(word1.length() != word2.length())//smaller word is occurs at the beginning of the larger word
+			return word1.length() - word2.length();
+		else
+			return 0;
+	}
+
 	// without using
 	public static void inputsInventory(String[][] input) {
-		String[][] inventory = inventoryInformation(0, "");
+		String[][] inventory = inventoryInformation(0, "", false);
 
 		for(int i = 0; i< input.length; i++) {
 			for(int j = 0; j< inventory.length; j++) {
@@ -58,10 +73,10 @@ public class Inventory {
 
 		Inventory.overwriteInventoryTxt(inventory);
 	}
-	
+
 	// without using
 	public static void outsInventory(String[][] input) {
-		String[][] inventory = inventoryInformation(0, "");
+		String[][] inventory = inventoryInformation(0, "", false);
 
 		for(int i = 0; i< input.length; i++) {
 			for(int j = 0; j< inventory.length; j++) {
@@ -78,19 +93,19 @@ public class Inventory {
 	}
 
 	public static boolean productActive(String name) {
-		String[][] inventory = inventoryInformation(0, "");
+		String[][] inventory = inventoryInformation(0, "", false);
 		for (int i = 0; i<inventory.length; i++) {
 			if (inventory[i][1].equals(name)) {
 				if (inventory[i][5].equals("active"))return true;
 				else return false;
 			}
-				
+
 		}	
 		return false;
 	}
 
 	public static void addNewProduct(String[] toAdd) {
-		String[][] inventory = inventoryInformation(0, "");
+		String[][] inventory = inventoryInformation(0, "", false);
 		toAdd[0] = ""+(inventory.length+1);
 		inventory = appendArray2D(inventory, toAdd);
 
@@ -98,14 +113,14 @@ public class Inventory {
 	}
 
 	public static void editProduct(String[] toEdit) {
-		String[][] inventory = inventoryInformation(0, "");
+		String[][] inventory = inventoryInformation(0, "", false);
 
 		for(int i = 0; i< inventory.length; i++) {
 			if(toEdit[0].equals(inventory[i][1])) { // find old name
 				toEdit[2] = inventory[i][2];
 				addNewProduct(toEdit);
-				
-				inventory = inventoryInformation(0, "");
+
+				inventory = inventoryInformation(0, "", false);
 				inventory[i][2] = "0";
 				inventory[i][5] = "deleted";
 				overwriteInventoryTxt(inventory);
@@ -115,9 +130,8 @@ public class Inventory {
 		}
 	}
 
-	// incomplete
 	public static void deliteProduct(String name) {
-		String[][] inventory = inventoryInformation(0, "");
+		String[][] inventory = inventoryInformation(0, "", false);
 		for (int i = 0; i<inventory.length; i++) {
 			if (inventory[i][1].equals(name)) {
 				inventory[i][5] = "deleted";
@@ -146,7 +160,56 @@ public class Inventory {
 		}
 	}
 
-	public static String[][] inventoryInformation(int order, String toFind) {
+	public static String[][] inventoryOrderBy(int orderBy, boolean ascending, int find, String findName, boolean active) {
+		String[][] inventory = inventoryInformation(find, findName, active);
+
+		for(int i = 0; i < inventory.length - 1; i++)
+		{
+			for(int j = i+1; j < inventory.length; j++)
+			{
+				if (ascending) {
+					if(orderBy == 1) {
+						if(compareStrings(inventory[i][orderBy], inventory[j][orderBy]) > 0)//words[i] is greater than words[j]
+						{
+							String temp[] = inventory[i];
+							inventory[i] = inventory[j];
+							inventory[j] = temp;
+						}
+					}
+					else {
+						if(Double.parseDouble(inventory[i][orderBy]) - Double.parseDouble(inventory[j][orderBy]) > 0)//words[i] is greater than words[j]
+						{
+							String temp[] = inventory[i];
+							inventory[i] = inventory[j];
+							inventory[j] = temp;
+						}
+					}
+				}
+				else {
+					if(orderBy == 1) {
+						if(compareStrings(inventory[i][orderBy], inventory[j][orderBy]) < 0)//words[i] is greater than words[j]
+						{
+							String temp[] = inventory[i];
+							inventory[i] = inventory[j];
+							inventory[j] = temp;
+						}
+					}
+					else {
+						if(Double.parseDouble(inventory[i][orderBy]) - Double.parseDouble(inventory[j][orderBy]) < 0)//words[i] is greater than words[j]
+						{
+							String temp[] = inventory[i];
+							inventory[i] = inventory[j];
+							inventory[j] = temp;
+						}
+					}
+				}
+
+			}
+		}
+		return inventory;
+	}
+
+	public static String[][] inventoryInformation(int find, String findName, boolean active) {
 		String[][] information = {};
 
 		createInventoryTxt();
@@ -181,8 +244,37 @@ public class Inventory {
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNextLine()) {
 				toAdd[lineCounter%6] = myReader.nextLine();
-				if (lineCounter%6 == 5) {						
-					information = Inventory.appendArray2D(information, toAdd);
+				if (lineCounter%6 == 5) {
+					if (active) {
+						if (toAdd[5].equals("active")) {
+							if (findName.length()<=0) {
+								information = Inventory.appendArray2D(information, toAdd);
+							}
+							else {
+								if (find == 0) {
+									if (toAdd[1].startsWith(findName)) {
+										information = Inventory.appendArray2D(information, toAdd);
+									}
+								}
+								else if (find == 1) {
+									if (toAdd[1].contains(findName)) {
+										information = Inventory.appendArray2D(information, toAdd);
+									}
+
+								}
+								else if (find == 2) {
+									if (toAdd[1].endsWith(findName)) {
+										information = Inventory.appendArray2D(information, toAdd);
+									}
+								}
+							}
+
+						}						
+					}
+					else {
+						information = Inventory.appendArray2D(information, toAdd);
+					}
+
 				}
 				lineCounter++;
 			}

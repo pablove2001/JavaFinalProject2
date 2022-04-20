@@ -23,13 +23,13 @@ public class FrameInventory extends JFrame implements ActionListener {
 	JScrollPane jspScrollPane;
 	JButton jbReturn;
 
-	public FrameInventory(int order, String toFind) {
+	public FrameInventory(int orderBy, boolean ascending, int find, String findName, boolean active) {
 		// Create JPanel
 		jpPanel = new JPanel();
 		// Create JFrame
 		jfFrame = new JFrame();
 		// Create JTable
-		String[][] information = Inventory.inventoryInformation(order, toFind);
+		String[][] information = Inventory.inventoryOrderBy(orderBy, ascending, find, findName, active);
 		String[] header = { "ID", "Name", "Count No.", "Unit Price", "Profit %" };
 		jtTable = new JTable(information, header){
 			public boolean isCellEditable(int row, int column) { 
