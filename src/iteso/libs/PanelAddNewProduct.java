@@ -15,8 +15,6 @@ import javax.swing.JTextField;
 
 public class PanelAddNewProduct extends JFrame implements ActionListener {
 
-	static private PanelAddNewProduct singleton = null;
-
 	private final int PANEL_WIDTH = 260, PANEL_HEIGHT = 285;
 	int idUser;
 
@@ -114,7 +112,7 @@ public class PanelAddNewProduct extends JFrame implements ActionListener {
 	}
 
 	static public void createPanelAddNewProduct(int accountType) {
-		singleton = new PanelAddNewProduct(accountType);
+		new PanelAddNewProduct(accountType);
 	}
 
 	private boolean validateName() {
@@ -123,13 +121,13 @@ public class PanelAddNewProduct extends JFrame implements ActionListener {
 			jlStatus.setText("Name is empty");
 			return false;
 		}
-		
-		if (Inventory.productExists(jtfName.getText())) {
+
+		if (Inventory.productActive(jtfName.getText())) {
 			jlStatus.setVisible(true);
 			jlStatus.setText("Name already exists");
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -148,9 +146,9 @@ public class PanelAddNewProduct extends JFrame implements ActionListener {
 			jlStatus.setText("Unit Price is incorrect");
 			return false;
 		}
-		
+
 		price = Math.round(price*100.0)/100.0;
-		
+
 		if (price < 0.01) {
 			jlStatus.setText("Unit Price is less than $0.01");
 			return false;
@@ -158,14 +156,14 @@ public class PanelAddNewProduct extends JFrame implements ActionListener {
 
 		return true;
 	}
-	
+
 	private boolean validateProfit() {
 		if (jtfProfit.getText().length() <= 0) {
 			jlStatus.setVisible(true);
 			jlStatus.setText("Profit % is empty");
 			return false;
 		}
-		
+
 		String str = jtfProfit.getText();
 		double profit = 0;
 		try {
@@ -174,22 +172,22 @@ public class PanelAddNewProduct extends JFrame implements ActionListener {
 			jlStatus.setText("Profit % is incorrect");
 			return false;
 		}
-		
+
 		profit = Math.round(profit*100.0)/100.0;
-		
+
 		if (profit < 0) {
 			jlStatus.setText("Profit % is less than 0.00%");
 			return false;
 		}
-		
+
 		return true;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jbReturn) {
-			// PanelMenu	
-			PanelMenu.createPanelMenu(idUser);
+			// PanelProducts	
+			PanelProducts.createPanelProducts(idUser);
 			dispose();
 		}
 		if (e.getSource() == jbReset) {
@@ -209,11 +207,11 @@ public class PanelAddNewProduct extends JFrame implements ActionListener {
 						jlStatus.setVisible(true);
 						jlStatus.setForeground(new Color(0, 102, 0));
 						jlStatus.setText("Correct input");
-						
-						String[] str = {"", jtfName.getText(), "0", jtfUnitPrice.getText(), jtfProfit.getText()};
+
+						String[] str = {"", jtfName.getText(), "0", jtfUnitPrice.getText(), jtfProfit.getText(), "active"};
 						Inventory.addNewProduct(str);
 					}
-			
+
 		}
 
 	}

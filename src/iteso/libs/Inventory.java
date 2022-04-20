@@ -12,7 +12,7 @@ public class Inventory {
 
 	}
 
-	private static void createTxtFile() {
+	private static void createInventoryTxt() {
 		try {
 			File myObj = new File("inventory.txt");
 			if (myObj.createNewFile()) {
@@ -41,7 +41,8 @@ public class Inventory {
 			System.out.println();
 		}
 	}
-
+	
+	// without using
 	public static void inputsInventory(String[][] input) {
 		String[][] inventory = inventoryInformation(0, "");
 
@@ -57,7 +58,8 @@ public class Inventory {
 
 		Inventory.overwriteInventoryTxt(inventory);
 	}
-
+	
+	// without using
 	public static void outsInventory(String[][] input) {
 		String[][] inventory = inventoryInformation(0, "");
 
@@ -74,11 +76,15 @@ public class Inventory {
 
 		Inventory.overwriteInventoryTxt(inventory);
 	}
-	
-	public static boolean productExists(String name) {
+
+	public static boolean productActive(String name) {
 		String[][] inventory = inventoryInformation(0, "");
 		for (int i = 0; i<inventory.length; i++) {
-			if (inventory[i][1].equals(name)) return true;
+			if (inventory[i][1].equals(name)) {
+				if (inventory[i][5].equals("active"))return true;
+				else return false;
+			}
+				
 		}	
 		return false;
 	}
@@ -95,16 +101,30 @@ public class Inventory {
 		String[][] inventory = inventoryInformation(0, "");
 
 		for(int i = 0; i< inventory.length; i++) {
-			if(toEdit[0].equals(inventory[i][1])) {
-				inventory[i][1] = toEdit[1];
-				inventory[i][3] = toEdit[3];
-				inventory[i][4] = toEdit[4];
-				break;
+			if(toEdit[0].equals(inventory[i][1])) { // find old name
+				toEdit[2] = inventory[i][2];
+				addNewProduct(toEdit);
+				
+				inventory = inventoryInformation(0, "");
+				inventory[i][2] = "0";
+				inventory[i][5] = "deleted";
+				overwriteInventoryTxt(inventory);
+				return;
 			}
 
 		}
+	}
 
-		overwriteInventoryTxt(inventory);
+	// incomplete
+	public static void deliteProduct(String name) {
+		String[][] inventory = inventoryInformation(0, "");
+		for (int i = 0; i<inventory.length; i++) {
+			if (inventory[i][1].equals(name)) {
+				inventory[i][5] = "deleted";
+				overwriteInventoryTxt(inventory);
+				return;
+			}
+		}
 	}
 
 	public static void overwriteInventoryTxt(String[][] inventory) {
@@ -129,7 +149,7 @@ public class Inventory {
 	public static String[][] inventoryInformation(int order, String toFind) {
 		String[][] information = {};
 
-		createTxtFile();
+		createInventoryTxt();
 
 		// Line Counter
 		int lineCounter = 0;		
@@ -148,22 +168,20 @@ public class Inventory {
 		}
 
 		// empty
-		if (lineCounter < 5) {
-			String[][] empty = {{"", "", "", "", ""}};
+		if (lineCounter < 6) {
+			String[][] empty = {{"", "", "", "", "", ""}};
 			return empty;
 		}
 
 		// no empty		
 		lineCounter = 0;
-		String[] toAdd = new String[5];
-		String presta;
+		String[] toAdd = new String[6];
 		try {
 			File myObj = new File("inventory.txt");
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNextLine()) {
-				presta = myReader.nextLine();
-				toAdd[lineCounter%5] = presta;
-				if (lineCounter%5 == 4) {						
+				toAdd[lineCounter%6] = myReader.nextLine();
+				if (lineCounter%6 == 5) {						
 					information = Inventory.appendArray2D(information, toAdd);
 				}
 				lineCounter++;

@@ -15,8 +15,6 @@ import javax.swing.JTextField;
 
 public class PanelEditProduct extends JFrame implements ActionListener {
 
-	static private PanelEditProduct singleton = null;
-
 	private final int PANEL_WIDTH = 260, PANEL_HEIGHT = 315;
 	int idUser;
 
@@ -76,6 +74,7 @@ public class PanelEditProduct extends JFrame implements ActionListener {
 		jlStatus = new JLabel("Status");
 		jlStatus.setVisible(false);
 		jlStatus.setFont(font5);
+		jlStatus.setBounds(25, 190, 300, 23);
 		jpPanel.add(jlStatus);
 
 		// Create JButton
@@ -124,7 +123,7 @@ public class PanelEditProduct extends JFrame implements ActionListener {
 	}
 
 	static public void createPanelEditProduct(int accountType) {
-		singleton = new PanelEditProduct(accountType);
+		new PanelEditProduct(accountType);
 	}
 
 	private boolean validateName() {
@@ -134,7 +133,7 @@ public class PanelEditProduct extends JFrame implements ActionListener {
 			return false;
 		}
 
-		if (!Inventory.productExists(jtfName.getText())) {
+		if (!Inventory.productActive(jtfName.getText())) {
 			jlStatus.setVisible(true);
 			jlStatus.setText("Name does not exists");
 			return false;
@@ -154,7 +153,7 @@ public class PanelEditProduct extends JFrame implements ActionListener {
 			return true;
 		}
 
-		if (Inventory.productExists(jtfNewName.getText())) {
+		if (Inventory.productActive(jtfNewName.getText())) {
 			jlStatus.setVisible(true);
 			jlStatus.setText("New Name already exists");
 			return false;
@@ -218,8 +217,8 @@ public class PanelEditProduct extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jbReturn) {
-			// PanelMenu	
-			PanelMenu.createPanelMenu(idUser);
+			// PanelProducts	
+			PanelProducts.createPanelProducts(idUser);
 			dispose();
 		}
 		if (e.getSource() == jbReset) {
@@ -241,7 +240,7 @@ public class PanelEditProduct extends JFrame implements ActionListener {
 							jlStatus.setForeground(new Color(0, 102, 0));
 							jlStatus.setText("Correct input");
 
-							String[] str = {jtfName.getText(), jtfNewName.getText(), "", jtfUnitPrice.getText(), jtfProfit.getText()};
+							String[] str = {jtfName.getText(), jtfNewName.getText(), "", jtfUnitPrice.getText(), jtfProfit.getText(), "active"};
 							Inventory.editProduct(str);
 						}
 

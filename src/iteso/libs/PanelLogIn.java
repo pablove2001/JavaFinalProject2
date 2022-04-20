@@ -19,8 +19,6 @@ import javax.swing.JPasswordField;
 
 public class PanelLogIn extends JFrame implements ActionListener {
 
-	static private PanelLogIn singleton = null;
-
 	private final int PANEL_WIDTH = 400, PANEL_HEIGHT = 300;
 
 	JPanel jpPanel;
@@ -103,7 +101,7 @@ public class PanelLogIn extends JFrame implements ActionListener {
 	}
 
 	static public void createPanelLogIn() {
-		singleton = new PanelLogIn();
+		new PanelLogIn();
 	}
 
 	private void logIn() {

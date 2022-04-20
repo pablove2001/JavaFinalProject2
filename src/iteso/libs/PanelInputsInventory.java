@@ -12,8 +12,6 @@ import javax.swing.JTable;
 
 public class PanelInputsInventory extends JFrame implements ActionListener {
 
-	static private PanelInputsInventory singleton = null;
-
 	private final int PANEL_WIDTH = 800, PANEL_HEIGHT = 600;
 
 	JPanel jpPanel;
@@ -45,7 +43,7 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 	}
 
 	static public void createPanelInputsInventory() {
-		singleton = new PanelInputsInventory();
+		new PanelInputsInventory();
 	}
 
 	@Override

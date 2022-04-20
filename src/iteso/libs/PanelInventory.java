@@ -21,8 +21,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class PanelInventory extends JFrame implements ActionListener {
 
-	static private PanelInventory singleton = null;
-
 	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 345;
 	int idUser;
 
@@ -137,7 +135,7 @@ public class PanelInventory extends JFrame implements ActionListener {
 	}
 
 	static public void createPanelInventory(int accountType) {
-		singleton = new PanelInventory(accountType);
+		new PanelInventory(accountType);
 	}
 
 	@Override

@@ -1,215 +1,72 @@
 1
 nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre
 0
-23
-23
-5
-nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
+111
+1111
+deleted
 2
 nombre2
-2
-precio2
-porcentaje ganancia2
+22
+222
+2222
+deleted
 3
 nombre3
-30
-precio3
-porcentaje ganancia3
+33
+333
+3333
+deleted
 4
 nombre4
-0
-precio4
-porcentaje ganancia4
+44
+444
+4444
+active
 5
 nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre4
-0
-precio4
-porcentaje ganancia4
-5
-nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre4
-0
-precio4
-porcentaje ganancia4
-5
-nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre4
-0
-precio4
-porcentaje ganancia4
-5
-nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre4
-0
-precio4
-porcentaje ganancia4
-5
-nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre4
-0
-precio4
-porcentaje ganancia4
-5
-nombre5
-50
-precio5
-porcentaje ganancia5
-1
-nombre1
-4
-precio1
-porcentaje ganancia1
-2
-nombre2
-2
-precio2
-porcentaje ganancia2
-3
-nombre3
-30
-precio3
-porcentaje ganancia3
-4
-nombre4
-0
-precio4
-porcentaje ganancia4
-5
-nombrexd
-50
-precio5
-porcentaje ganancia5
-41
+55
+555
+5555
+active
+6
 nombre6
+11
+666
+6666
+active
+7
+nombre7
+11
+777
+7777
+active
+8
+nombre8
+11
+888
+8888
+active
+9
+nombre9
+11
+999
+9999
+active
+10
+nombre10
+11
+999
+9999
+active
+11
+nombre11
 0
-12.40
-15
-42
-la coca de piña 500 ml
-13
-100
-200
-43
-nombre4
-0
+111111
+11111111
+active
 12
-2
+nombre12
+0
+11
+11
+active
