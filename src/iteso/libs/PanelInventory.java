@@ -32,11 +32,11 @@ public class PanelInventory extends JFrame implements ActionListener {
 	ButtonGroup BGbuttonsAscDesc;
 	JTextField jtfFindWord;
 
-	FrameInventory inventory = new FrameInventory(0, true, -1, "", true);
+	FrameInventory inventory = null;
 
 	private PanelInventory(int idUser) {
 		this.idUser = idUser;
-		inventory.jfFrame.setVisible(false);
+		if (inventory != null) inventory.jfFrame.setVisible(false);		
 
 		// Create JPanel
 		jpPanel = new JPanel();
@@ -143,14 +143,14 @@ public class PanelInventory extends JFrame implements ActionListener {
 		if (e.getSource() == jbReturn) {
 			// PanelMenu	
 			PanelMenu.createPanelMenu(idUser);
-			inventory.jfFrame.dispose();
+			if (inventory != null) inventory.jfFrame.dispose();	
 			dispose();
 		}
 		if (e.getSource() == jbShowInventory) {
 			// ShowInventory
 			boolean ascending = false;
-			if (jrbAscending.isSelected()) ascending = true;			
-			inventory.jfFrame.dispose();
+			if (jrbAscending.isSelected()) ascending = true;	
+			if (inventory != null) inventory.jfFrame.dispose();			
 			inventory = new FrameInventory(jcbOrderBy.getSelectedIndex(), ascending, jcbFindWord.getSelectedIndex(), jtfFindWord.getText(), true);	
 			inventory.jfFrame.setVisible(true);	
 		}
