@@ -23,29 +23,27 @@ public class FrameInputsInventory extends JFrame implements ActionListener {
 	JScrollPane jspScrollPane;
 	JButton jbReturn;
 
-	public FrameInputsInventory(int order, String toFind) {
+	public FrameInputsInventory(String [][] inputsInventory) {
+		
 		// Create JPanel
 		jpPanel = new JPanel();
+		
 		// Create JFrame
 		jfFrame = new JFrame();
+		
 		// Create JTable
-//		String[][] information = Inventory.inventoryInformation();
-		String[] header = { "ID", "Name", "Count No.", "Unit Price", "Profit %" };
-//		jtTable = new JTable(information, header){
-//			public boolean isCellEditable(int row, int column) { 
-//				return false;             
-//			}
-//		};
+		String[] header = {"Name", "Quantity"};
+		jtTable = new JTable(inputsInventory, header){
+			public boolean isCellEditable(int row, int column) { 
+				return false;             
+			}
+		};
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-		for (int i = 0; i<5; i++) jtTable.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
-		jtTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-		jtTable.getColumnModel().getColumn(2).setPreferredWidth(20);
-		jtTable.getColumnModel().getColumn(3).setPreferredWidth(30);
-		jtTable.getColumnModel().getColumn(4).setPreferredWidth(30);
-		// Create JScrollPane
-		jspScrollPane = new JScrollPane(jtTable);
+		for (int i = 0; i<2; i++) jtTable.getColumnModel().getColumn(i).setCellRenderer( centerRenderer );
 		
+		// Create JScrollPane
+		jspScrollPane = new JScrollPane(jtTable);		
 		jpPanel.add(jspScrollPane);
 		jfFrame.add(jpPanel);
 		jfFrame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
@@ -57,8 +55,6 @@ public class FrameInputsInventory extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {}
 
-	}
 }

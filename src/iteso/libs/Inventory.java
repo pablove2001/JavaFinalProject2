@@ -27,6 +27,8 @@ public class Inventory {
 	}
 
 	public static String[][] appendArray2D(String[][] array, String[] toAdd){
+		System.out.println(toAdd[0]);
+		
 		String[][] newArray = new String[array.length+1][];
 		for(int i = 0; i< array.length; i++) {
 			newArray[i] = array[i];
@@ -55,6 +57,29 @@ public class Inventory {
 			return word1.length() - word2.length();
 		else
 			return 0;
+	}
+	
+	public static boolean isAdded(String[][] array, String str) {
+		
+		return true;
+	}
+	
+	public static int getQuantityProduct(String name) {
+		String[][] inventory = inventoryInformation(0, "", false);
+		for (int i = 0; i<inventory.length; i++) {
+			if (inventory[i][1].equals(name) && inventory[i][5].equals("active")) return Integer.parseInt(inventory[i][2]);
+		}
+		
+		return 0;
+	}
+	
+	public static String getIdproduct(String name) {
+		String[][] inventory = inventoryInformation(0, "", false);
+		for (int i = 0; i<inventory.length; i++) {
+			if (inventory[i][1].equals(name) && inventory[i][5].equals("active")) return inventory[i][0];
+		}
+		
+		return "0";
 	}
 
 	// without using
@@ -97,7 +122,6 @@ public class Inventory {
 		for (int i = 0; i<inventory.length; i++) {
 			if (inventory[i][1].equals(name)) {
 				if (inventory[i][5].equals("active"))return true;
-				else return false;
 			}
 
 		}	

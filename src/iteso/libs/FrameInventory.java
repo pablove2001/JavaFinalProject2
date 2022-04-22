@@ -30,7 +30,7 @@ public class FrameInventory extends JFrame implements ActionListener {
 		jfFrame = new JFrame();
 		// Create JTable
 		String[][] information = Inventory.inventoryOrderBy(orderBy, ascending, find, findName, active);
-		String[] header = { "ID", "Name", "Count No.", "Unit Price", "Profit %" };
+		String[] header = { "ID", "Name", "Quantity", "Unit Price", "Profit %" };
 		jtTable = new JTable(information, header){
 			public boolean isCellEditable(int row, int column) { 
 				return false;             
@@ -57,9 +57,6 @@ public class FrameInventory extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	public void actionPerformed(ActionEvent e) {}
 
 }

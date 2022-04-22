@@ -1,21 +1,20 @@
 import iteso.libs.*;
 
 public class Main {
-// 0 1 2
+// 1 2 3
 	public static void main(String[] args) {
 
-//		PanelLogIn.createPanelLogIn();
-		PanelMenu.createPanelMenu(3);
+		PanelLogIn.createPanelLogIn();
+//		PanelMenu.createPanelMenu(3);
 //		PanelInventory.createPanelInventory(2);
 //		PanelAddNewProduct.createPanelAddNewProduct(1);
 //		PanelEditProduct.createPanelEditProduct(3);
 //		PanelProducts.createPanelProducts(1);
+//		PanelInputsInventory.createPanelAddNewProduct(2);
 		
-//		System.out.println(Users.idToTypeUser(3));
-		
-//		Inventory.inventoryOrderBy(4, true);
-		
-//		Inventory.printArray2D(Inventory.inventoryInformation(0, "", false));
+//		String[][] array = {{"nombre1", "1"}, {"nombre2", "2"}};
+//		
+//		FrameInputsInventory frame = new FrameInputsInventory(array);
 
 		
 		

@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class PanelInputsInventory extends JFrame implements ActionListener {
+public class PanelOutputsInventory extends JFrame implements ActionListener {
 
 	private final int PANEL_WIDTH = 260, PANEL_HEIGHT = 255;
 	int idUser;
@@ -24,12 +24,12 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 	JButton jbReturn, jbReset, jbAdd, jbSubmit;
 	JLabel jlTitle, jlName, jlQuantity, jlStatus;
 	JTextField jtfName, jtfQuantity;
-
+	
 	String[][] inputs = {};
-
+	
 	FrameInputsInventory inputsInventory = null;
 
-	private PanelInputsInventory(int idUser) {
+	private PanelOutputsInventory(int idUser) {
 		this.idUser = idUser;
 		if (inputsInventory != null) inputsInventory.jfFrame.setVisible(false);	
 
@@ -62,7 +62,7 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 		jlName.setFont(font5);
 		jlName.setBounds(25, 60, 300, 23);
 		jpPanel.add(jlName);
-
+		
 		jlQuantity = new JLabel("Quantity:");
 		jlQuantity.setFont(font5);
 		jlQuantity.setBounds(25, 90, 300, 23);
@@ -105,7 +105,7 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 		jtfName.setFont(font5);
 		jtfName.setBounds(77, 60, 140, 23);
 		jpPanel.add(jtfName);
-
+		
 		jtfQuantity = new JTextField();
 		jtfQuantity.setText("");
 		jtfQuantity.setFont(font5);
@@ -114,7 +114,7 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 	}
 
 	static public void createPanelAddNewProduct(int accountType) {
-		new PanelInputsInventory(accountType);
+		new PanelOutputsInventory(accountType);
 	}
 
 	private boolean validateName() {
@@ -139,51 +139,19 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 			jlStatus.setText("Quantity is empty");
 			return false;
 		}
-
-		// Is an Integer
-		try {
-			// Minimum Quantity
-			if (Integer.parseInt(jtfQuantity.getText()) < 1) {
-				jlStatus.setVisible(true);
-				jlStatus.setText("Minimum Quantity: 1");
-				return false;
-			}
-		}catch(Exception e) {
+		// si esta añadido ya
+		
+		
+		// si no esta añadido ya
+		if (Integer.parseInt(jtfQuantity.getText()) > Inventory.getQuantityProduct(jtfName.getText())) {
 			jlStatus.setVisible(true);
-			jlStatus.setText("Quantity is not a number");
+			jlStatus.setText("Max Quantity: " + Inventory.getQuantityProduct(jtfName.getText()));
 			return false;
-		}		
-
-		// if it is not added
-		if (!Inventory.isAdded(inputs, jtfName.getText())) {
-			String[] toAdd = {jtfName.getText(), jtfQuantity.getText()};
-			System.out.println("it is not added: "+jtfName.getText()+" "+jtfQuantity.getText());
-			
-			inputs = Inventory.appendArray2D(inputs, toAdd);
-			Inventory.printArray2D(inputs);
-			
-			return true;
 		}
 		
-		// if it is added
-		else {			
-			System.out.println("it is added: "+jtfName.getText()+" "+jtfQuantity.getText());
-			Inventory.printArray2D(inputs);
-			
-			addProductAdded(jtfName.getText(), jtfQuantity.getText());
-			return true;
-		}
+		return true;
 	}
 	
-	private void addProductAdded(String name, String quantity) {
-		for (int i = 0; i<inputs.length; i++) {
-			if(inputs[i][0].equals(name)) {
-				inputs[i][1] = ""+(Integer.parseInt(inputs[i][1]) + Integer.parseInt(quantity));
-				return;
-			}
-		}
-	}
-
 	private void resetPanel() {
 		jtfName.setText("");
 		jtfQuantity.setText("");
@@ -212,32 +180,20 @@ public class PanelInputsInventory extends JFrame implements ActionListener {
 					jlStatus.setVisible(true);
 					jlStatus.setForeground(new Color(0, 102, 0));
 					jlStatus.setText("Correct input");
-
+					
 					if (inputsInventory != null) inputsInventory.jfFrame.dispose();	
 					inputsInventory = new FrameInputsInventory(inputs);	
 					inputsInventory.jfFrame.setVisible(true);	
 
-					//					String[] str = {"", jtfName.getText(), "0", jtfUnitPrice.getText(), jtfProfit.getText(), "active"};
-					//					Inventory.addNewProduct(str);
+//					String[] str = {"", jtfName.getText(), "0", jtfUnitPrice.getText(), jtfProfit.getText(), "active"};
+//					Inventory.addNewProduct(str);
 				}
 		}
 		if (e.getSource() == jbSubmit) {
 			resetPanel();
-			if (inputs.length<1) {
-				jlStatus.setVisible(true);
-				jlStatus.setForeground(Color.red);
-				jlStatus.setText("Empty Submit");
-			}
-			else {
-				jlStatus.setVisible(true);
-				jlStatus.setForeground(new Color(0, 102, 0));
-				jlStatus.setText("Correct Submit");
-				inputs = null;
-				String [][] subinput = {};
-				inputs = subinput.clone();	
-			}
-			
-			
+			jlStatus.setVisible(true);
+			jlStatus.setForeground(new Color(0, 102, 0));
+			jlStatus.setText("Correct Submit");
 		}
 
 	}

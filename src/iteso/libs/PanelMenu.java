@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-
 public class PanelMenu extends JFrame implements ActionListener {
 
 	private final int PANEL_WIDTH = 300, PANEL_HEIGHT = 249;
@@ -134,8 +133,8 @@ public class PanelMenu extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == jbInputsInventory) {
 			// PanelInventoryManagement
-			System.out.println("PanelInputsInventory");
-
+			PanelInputsInventory.createPanelAddNewProduct(idUser);
+			dispose();
 		}
 		if (e.getSource() == jbOutputsInventory) {
 			// PanelInventoryManagement
